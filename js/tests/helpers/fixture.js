@@ -39,3 +39,22 @@ export const jQueryMock = {
     })
   }
 }
+
+export const clearBodyAndDocument = () => {
+  const attributes = ['data-bs-padding-right', 'style']
+
+  document.querySelectorAll('.bs-styles').forEach(styleTest => styleTest.parentNode.removeChild(styleTest))
+
+  attributes.forEach(attr => {
+    document.documentElement.removeAttribute(attr)
+    document.body.removeAttribute(attr)
+  })
+}
+
+export const appendCss = cssRules => {
+  const styleTest = document.createElement('style')
+  styleTest.type = 'text/css'
+  styleTest.classList.add('bs-styles')
+  styleTest.appendChild(document.createTextNode(cssRules))
+  document.head.appendChild(styleTest)
+}
